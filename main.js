@@ -11,10 +11,10 @@ const getWeightValues = () => {
     [...weights].map((weight) => {
         if (weight.title.includes("Váha")) {
             let foo = weight.title;
-            foo = foo.replace("Váha", "");
-            foo = foo.replace("[", "");
-            foo = foo.replace("]", "");
-            foo = foo.replace(",", ".");
+            foo = foo.replaceAll("Váha", "");
+            foo = foo.replaceAll("[", "");
+            foo = foo.replaceAll("]", "");
+            foo = foo.replaceAll(",", ".");
             values.push(parseFloat(foo));
         }
     })
@@ -36,7 +36,8 @@ const getResults = (weightValues, table) => {
             }
             let data = [];
             let itemTitle = item.previousElementSibling.title;
-            itemTitle = itemTitle.replace(",", ".");
+            itemTitle = itemTitle.replaceAll(",", ".");
+            console.log(itemTitle);
             if (itemTitle.includes(" ")) {
                 itemTitle = itemTitle.split(" ");
                 data.push(...itemTitle);
@@ -63,5 +64,7 @@ const calculateAverages = (weightValues, array) => {
             fooWeights += weightValues[item.index];
         });
     });
+    console.log(foo);
+    console.log(fooWeights);
     return (foo / fooWeights).toFixed(2);
 }
