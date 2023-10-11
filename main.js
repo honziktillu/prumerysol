@@ -39,7 +39,6 @@ const getResults = (weightValues, table) => {
       let data = [];
       let itemTitle = item.previousElementSibling.title;
       itemTitle = itemTitle.replaceAll(",", ".");
-      console.log(itemTitle);
       if (itemTitle.includes(" ")) {
         itemTitle = itemTitle.split(" ");
         data.push(...itemTitle);
@@ -61,7 +60,6 @@ const calculateAverages = (weightValues, array) => {
   let foo = 0;
   let fooWeights = 0;
   array.map((item) => {
-    console.log(item);
     [...item.value].map((mark) => {
       if (isNaN(mark)) return;
       let fee = mark * weightValues[item.index];
@@ -69,7 +67,5 @@ const calculateAverages = (weightValues, array) => {
       fooWeights += weightValues[item.index];
     });
   });
-  console.log(foo);
-  console.log(fooWeights);
   return (foo / fooWeights).toFixed(2);
 };
