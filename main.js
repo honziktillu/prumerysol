@@ -28,15 +28,23 @@ const getResults = (weightValues, table) => {
         foo++;
         let averageIndex = 0;
         const averages = row.getElementsByClassName("VHDilciPrumer");
+        const tds = row.getElementsByTagName("td");
         let averageArray = [];
         [...averages].map((item) => {
-            if (!item.title) {
+            if (!item.previousElementSibling.hasAttribute("title")) {
                 averageIndex++;
                 return;
             }
-            let itemTitle = item.title;
+            let data = [];
+            let itemTitle = item.previousElementSibling.title;
             itemTitle = itemTitle.replace(",", ".");
-            averageArray.push({"index": averageIndex, "value": itemTitle});
+            if (itemTitle.includes(" ")) {
+                itemTitle = itemTitle.split(" ");
+                data.push(...itemTitle);
+            } else {
+                data.push(itemTitle);
+            }
+            averageArray.push({"index": averageIndex, "value": data});
             averageIndex++;
         });
         if (!averageArray.length) return;
@@ -46,13 +54,15 @@ const getResults = (weightValues, table) => {
 }
 
 const calculateAverages = (weightValues, array) => {
-    console.log(weightValues);
     let foo = 0;
     let fooWeights = 0;
     array.map((item) => {
-        let fee = item.value * weightValues[item.index];
-        foo += fee;
-        fooWeights += weightValues[item.index];
+        console.log(item);
+        [...item.value].map((mark) => {
+            let fee = mark * weightValues[item.index];
+            foo += fee;
+            fooWeights += weightValues[item.index];
+        });
     });
     return (foo / fooWeights).toFixed(2);
 }
