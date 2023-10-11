@@ -28,7 +28,6 @@ const getResults = (weightValues, table) => {
         foo++;
         let averageIndex = 0;
         const averages = row.getElementsByClassName("VHDilciPrumer");
-        const tds = row.getElementsByTagName("td");
         let averageArray = [];
         [...averages].map((item) => {
             if (!item.previousElementSibling.hasAttribute("title")) {
