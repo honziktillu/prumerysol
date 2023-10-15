@@ -1,7 +1,7 @@
 {
     "name": "Skolaonline průměry",
     "version": "1.0.0",
-    "description": "S láskou Honzik",
+    "description": "Toto rozšíření počítá vaše průměry na stránce skolaonline.cz pokud je máte vypnuté. S láskou Honzik.",
     "manifest_version": 3,
     "author": "Jan Till",
     "content_scripts": [
